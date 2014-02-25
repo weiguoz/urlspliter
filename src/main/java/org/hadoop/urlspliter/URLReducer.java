@@ -2,6 +2,7 @@ package org.hadoop.urlspliter;
 
 import com.google.common.io.CharStreams;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
@@ -15,7 +16,6 @@ import org.apache.hadoop.fs.FSDataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
-import org.apache.hadoop.fs.FileSystem;
 import java.util.Iterator;
 
 /**

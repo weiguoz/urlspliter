@@ -1,7 +1,5 @@
 package org.hadoop.urlspliter;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -65,16 +63,19 @@ public class SLDExtractor {
         return this.suffixes_.contains(domain);
     }
 
-    public static String getHost(String link) {
-        String host="";
-        try {
-            if (!link.startsWith("http://") && !link.startsWith("https://") && !link.startsWith("ftp://"))
-                link = "http://"+link;
-            URL aURL = new URL(link);
-            host = aURL.getHost();
-        } catch (MalformedURLException e) {
-        }
-        return host;
+    public static String getHost(String link){
+        if(link == null || link.length() == 0) return "";
+
+        int slash2 = link.indexOf("://");
+        slash2 = slash2<0?0:slash2+3;
+
+        int end = link.indexOf('/', slash2);
+        if (end < 0) end = link.length();
+
+        int port = link.indexOf(':', slash2);
+        if (port>0 && port<end) end = port;
+
+        return link.substring(slash2, end);
     }
 
     public String extract(String link) {

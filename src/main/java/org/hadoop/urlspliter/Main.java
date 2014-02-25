@@ -23,10 +23,15 @@ public class Main {
 
         cfg.setOutputKeyClass(Text.class);
         cfg.setOutputValueClass(Text.class);
+        cfg.setCompressMapOutput(true);
+        // cfg.setMapOutputCompressorClass(GzipCodec.class);
+        // cfg.setMapOutputKeyClass(.class);
+        // cfg.setMapOutputValueClass(Text.class);
+
         cfg.setInputFormat(TextInputFormat.class);
+        // cfg.setInputFormat(SequenceFileInputFormat.class);  // if use compressed
         cfg.setOutputFormat(NullOutputFormat.class);
         FileInputFormat.addInputPath(cfg, new Path(inDir));
-
         cfg.set("URL_PARENT_DIR", outDir); // used in reduce
         cfg.set("URL_DATA_BASE_NAME", dataBaseName);
         cfg.set("MAX_FILE_SIZE_KB", maxFileSize);
